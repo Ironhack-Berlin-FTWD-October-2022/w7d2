@@ -68,13 +68,23 @@ function App() {
         // setmovies(moviesCopy)
     }
 
+    const deleteMovie = (id) => {
+        const filteredMovies = movies.filter(movie => {
+            return movie._id !== id
+        })
+
+        setMovies(filteredMovies)
+    }
+
     return (
         <div className="App">
 			<section>
-				{movies.map((movie) => (
+				{movies
+                .map((movie) => (
 					<div key={movie._id}>
 						<h3>{movie.title}</h3>
 						<h5>{movie.director}</h5>
+                        <button onClick={() => deleteMovie(movie._id)}>Delete</button>
 					</div>
 				))}
 
